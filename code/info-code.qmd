@@ -12,10 +12,10 @@ execute:
 ```{r}
 #| label: read-in
 
-# read in tidyverse
+# read in packages
 library(tidyverse)
+library(here)
 
 # read in my data and store it as an object called ben-data
-ben_data <- read.csv("ben-data-tracker - Sheet1.csv")
-
+ben_data <- read.csv(here("data", "ben-data-tracker - Sheet1.csv"))
 ```
