@@ -1,0 +1,21 @@
+---
+title: "Code"
+author: "Ben Wollack"
+date: "2026/05/21"
+format: pdf
+editor: source
+execute:
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: read-in
+
+# read in tidyverse
+library(tidyverse)
+
+# read in my data and store it as an object called ben-data
+ben_data <- read.csv("ben-data-tracker - Sheet1.csv")
+
+```
