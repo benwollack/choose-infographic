@@ -76,11 +76,11 @@ Customization: Color by day of the week, arrows to point out some notable points
 
 Chart Type: Circular Packing Chart
 
-Bubble Layer 1: Weekday/Weekend, distinguished by color
+Bubble Layer 1: Lunch Location, distinguished by color
 
 Bubble Layer 2: Bus Trips (there's not a lot of numbers I ended up getting, so I can treat this as categorical here), distinguished by color
 
-Bubble Layer 3: Distance walked, distinguished by size
+Bubble Layer 3: Distance walked, distinguished by size of layer 2
 
 Customization: Labels, custom font, arrow pointing out the most noticeable pattern
 
