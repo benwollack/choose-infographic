@@ -97,3 +97,8 @@ Color Intensity: Number of times that x-y combination shows up
 Color Spectrum: Distance walked, where green is high and red is low
 
 Customization: May need to adjust days of the week if there's too many white cells, custom font, arrows to point out interesting trends
+
+`Note:` I decided to use a pair of treemaps for the above instead after doing further exploration of what others have done; I think this will work better than a heat map at showing if calendar events correlates with distanced walked.
+
+I am tentatively deciding to go with figures 1, 2 and 4.
+
