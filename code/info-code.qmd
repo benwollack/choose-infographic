@@ -15,7 +15,29 @@ execute:
 # read in packages
 library(tidyverse)
 library(here)
+library(janitor)
 
 # read in my data and store it as an object called ben-data
 ben_data <- read.csv(here("data", "ben-data-tracker - Sheet1.csv"))
 ```
+
+# Data Cleaning
+
+```{r}
+#| label: data-clean
+
+ben_clean <- ben_data
+```
+
+
+# Figure 1
+
+```{r}
+#| label: time-series
+```
+
+
+# Figure 2
+
+# Figure 3
+Note that this is `figure 4` in the planning document.

@@ -102,3 +102,12 @@ Customization: May need to adjust days of the week if there's too many white cel
 
 I am tentatively deciding to go with figures 1, 2 and 4.
 
+**Figure 1**
+![Figure 1 Draft](figure1.jpg)
+Note that I am using the bottom one for figure 1 as I think it is cleaner.
+
+**Figure 2**
+![Figure 2 Draft](figure2.jpg)
+
+**Figure 4**
+![Figure 4 Draft](figure4.jpg)
