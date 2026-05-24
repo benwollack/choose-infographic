@@ -42,16 +42,65 @@ ben_clean <- ben_data |>
   # convert dates into an ordered variable
   mutate(date_clean = ymd(date)) |> 
   # set day of the week to have levels by chronological order
+  mutate(day_of_week = as_factor(day_of_week),
+         day_of_week = fct_relevel(day_of_week,
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday",
+                            "Sunday")) |> 
+  # remove unneeded columns
+  subset(select = -date)
+
+# check data frame's structure to ensure columns are read correctly
+str(ben_clean)
 ```
 
+Day of week and date now have associated number values, so the data can be ordered.
 
-# Figure 1
+Each figure will use different columns, so I will begin each plot with a select function.
+
+# Figure 1 - Timeseries
+
+Variables being used: distance walked, date, temperature, day of week
 
 ```{r}
-#| label: time-series
+#| label: time-clean
+
+# create new object to only include needed columns
+ben_time <- ben_clean |> 
+  # select needed columns
+  select(date_clean, distance_walked_km, day_of_week, high_temperature_c)
 ```
 
+```{r}
+#| label: timeseries
 
+ggplot(data = ben_time,
+       mapping = aes(
+         x = date_clean
+       )) +
+  geom_line(mapping = aes(y = distance_walked_km)) +
+  geom_line(mapping = aes(y = high_temperature_c))
+```
+
+Next steps: 
+
+Scale the temperature data so that it can overlay with the distance walked data
+
+Differentiate the colors for each, add legend
+
+Adjust the x-axis so that display dates are Mondays
+
+Add points, color by day of week
+
+Rename axes
+
+Add title
+
+Get rid of all grid lines except the Monday ones
 # Figure 2
 
 # Figure 3
