@@ -59,8 +59,9 @@ ben_clean <- ben_data |>
 # check data frame's structure to ensure columns are read correctly
 str(ben_clean)
 
-# add custom font
+# add custom fonts
 font_add_google("Darker Grotesque", "grot")
+font_add_google("Lexend", "lex")
 # use showtext to render fonts
 showtext_auto()
 ```
@@ -204,12 +205,32 @@ ben_tree <- ben_clean |>
 
 # create a treemap diagram
 # use ben_tree for the data
-# index: lists the hierarchy of variables to display
 treemap(ben_tree,
-            index=c("lunch_location", "bus_trips", "distance_walked_km"),
-            vSize="distance_walked_km")
+          # hierarchy of variables to display
+          index = c("lunch_location", "bus_trips", "distance_walked_km"),
+          # box size controlled by distance walked
+          vSize = "distance_walked_km",
+          # creates plot title
+          title = "Distanced Walked (km) by \nLunch Location (black text) and Bus Trips (white text)",
+          fontsize.title = 20,
+          # sets the color palette based on layer 1 (lunch location)
+          palette = c("#2F2ABF", "#2C6B36", "#C21D1D", "#BFAB1B"),
+          # sets border colors for the 3 layers
+          # black for first 2, grey for 3rd
+          border.col=c("black", "black", "grey50"),
+          # adjust border widths, higher layers are thicker
+          border.lwds=c(4,2.5,1),
+          # adjusts font size on labels, 3rd layer has no labels since size already accounts for the value
+          fontsize.labels=c(20, 15, 0),
+          # sets layer 1 text to black and layer 2 to white
+          fontcolor.labels=c("black", "white"),
+          # removes highlighting on labels
+          bg.labels=c("transparent"),
+          # layer 1's labels are centered, layer 2 in top left of box
+          align.labels=list( c("center", "center"), c("left", "top")),
+          fontfamily.labels = "lex"
+)
 ```
-
 
 # Figure 3
 Note that this is `figure 4` in the planning document.
