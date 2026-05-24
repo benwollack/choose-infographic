@@ -70,7 +70,7 @@ Each figure will use different columns, so I will begin each plot with a select 
 
 # Figure 1 - Timeseries
 
-Variables being used: distance walked, date, temperature, day of week
+Variables being used: distance walked, date, day of week
 
 ```{r}
 #| label: time-clean
@@ -186,6 +186,22 @@ ggplot(data = ben_time,
 ```
 
 # Figure 2
+
+Variables being used: distance walked, bus trips, lunch location
+
+```{r}
+#| label: tree-clean
+
+# create new object to only include needed columns
+ben_tree <- ben_clean |> 
+  # select needed columns
+  select(distance_walked_km, bus_trips, lunch_location)
+```
+
+```{r}
+#| label: tree-map
+```
+
 
 # Figure 3
 Note that this is `figure 4` in the planning document.
