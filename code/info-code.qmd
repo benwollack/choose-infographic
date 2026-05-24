@@ -18,6 +18,7 @@ library(here)
 library(janitor)
 library(lubridate)
 library(showtext)
+library(treemap)
 
 # read in my data and store it as an object called ben-data
 ben_data <- read.csv(here("data", "ben-data-tracker - Sheet1.csv"))
@@ -200,6 +201,13 @@ ben_tree <- ben_clean |>
 
 ```{r}
 #| label: tree-map
+
+# create a treemap diagram
+# use ben_tree for the data
+# index: lists the hierarchy of variables to display
+treemap(ben_tree,
+            index=c("lunch_location", "bus_trips", "distance_walked_km"),
+            vSize="distance_walked_km")
 ```
 
 
