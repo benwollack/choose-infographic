@@ -111,3 +111,10 @@ Note that I am using the bottom one for figure 1 as I think it is cleaner.
 
 **Figure 4**
 ![Figure 4 Draft](figure4.jpg)
+
+
+# Coding Decisions
+
+## Figure 1
+
+Dropped the temperature data, I couldn't figure out a way to do this without doing a dual axis with completely different units (distance unit vs a temperature unit). This would've made the chart too confusing, and I didn't see any interesting patterns.

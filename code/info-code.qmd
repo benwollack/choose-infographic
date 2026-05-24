@@ -72,23 +72,53 @@ Variables being used: distance walked, date, temperature, day of week
 # create new object to only include needed columns
 ben_time <- ben_clean |> 
   # select needed columns
-  select(date_clean, distance_walked_km, day_of_week, high_temperature_c)
+  select(date_clean, distance_walked_km, day_of_week)
+
+# store a variable to adjust the temperature scale
+temp_coe <- 2.5
 ```
 
 ```{r}
 #| label: timeseries
 
+# add base layer using cleaned data for this chart
+# since there's 2 y-axes, only storing x-axis here
 ggplot(data = ben_time,
        mapping = aes(
          x = date_clean
        )) +
-  geom_line(mapping = aes(y = distance_walked_km)) +
-  geom_line(mapping = aes(y = high_temperature_c))
+  # add the distance walked information
+  geom_line(
+    # use the distance walked column
+    mapping = aes(y = distance_walked_km),
+    # purple color
+    color = "darkorchid3",
+    linewidth = 0.8
+      ) +
+  # add the temperature information
+  geom_line(
+    # use temperature data with adjusted scale to overlap more nicely with
+    # distance walked
+    mapping = aes(y = high_temperature_c/temp_coe),
+    # yellow color
+    color = "goldenrod3",
+    linewidth = 0.8
+    ) +
+  # rename axes and add secondary axis
+  scale_y_continuous(
+    # rename first axis
+    name = "Distance Walked (km)",
+    # add a second axis with an adjusted scale to make the numbers accurate
+    # after the prior adjustment
+    sec.axis = sec_axis(~.*temp_coe, name = "High Temperature (Celsius)")
+  ) +
+    scale_color_manual(
+    name = "Legend", 
+    values = c("distance_walked_km" = "blue", "high_temperature_c" = "red")
+  )
 ```
 
 Next steps: 
-
-Scale the temperature data so that it can overlay with the distance walked data
 
 Differentiate the colors for each, add legend
 
