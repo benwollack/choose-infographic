@@ -93,11 +93,14 @@ ggplot(data = ben_time,
   geom_line(
     # use the distance walked column
     mapping = aes(y = distance_walked_km),
-    # purple color
+    # grey colored line
     color = "grey10",
+    # adjust the line's width
     linewidth = 0.3
       ) +
+  # add points
   geom_point() +
+  # color points in rainbow order by day of week
   scale_color_manual(values = c(
     "Monday" = "red",
     "Tuesday" = "orange2",
@@ -107,21 +110,71 @@ ggplot(data = ben_time,
     "Saturday" = "blue1",
     "Sunday" = "purple3"
   )) +
-  theme(panel.background = element_rect(fill = "#D1BCA1"),
-        panel.grid = element_line(color = "#D1BCA1")) +
+  # adjust color of the background and panel grid to be the same
+  # hides grid
+  theme(
+    panel.background = element_rect(fill = "#D1BCA1"),
+    panel.grid = element_line(color = "#D1BCA1")) +
+  # creating title
+  # renaming axes
+  # renaming legend (mapped to color)
   labs(
     x = "Date",
     y = "Distance Walked (km)",
     color = "Day Of Week",
     title = "Daily Distance Walked"
   ) +
+  # add an annotation
   annotate(
-    geom = "curve", x = as.Date("2026-05-11"), y = 10, xend = as.Date("2026-05-14"), yend = 13)
+    # annotation uses curve geometry
+    geom = "curve", 
+    # sets the beginning x location of the curve (must use date format to
+    # align with chart)
+    x = as.Date("2026-05-08"),
+    # sets the beginning y location of the curve
+    y = 11.25,
+    # sets the end x location of the curve
+    xend = as.Date("2026-05-15"),
+    # sets the end y location of the curve
+    yend = 13.13, 
+    # sets direction of curve
+    curvature = -0.5, 
+    # adjusts arrow length
+    arrow = arrow(length = unit(4, "mm"))) +
+  # add text annotation
+  annotate(
+    # use text geometry
+    geom = "text", 
+    # x location of text
+    x = as.Date("2026-05-08"), 
+    # y location of text
+    y = 11, 
+    # actual text
+    label = "Hiking Day!", 
+    # center text around set x location
+    hjust = "center") +
+  # annotation 2, same format as before, so fewer annotations
+  # curve and arrow geometry  
+  annotate(
+    geom = "curve", 
+    x = as.Date("2026-05-20"),
+    y = 6,
+    xend = as.Date("2026-05-12"),
+    yend = 3.33, 
+    # curve in opposite direction of other annotation
+    curvature = -0.5, 
+    arrow = arrow(length = unit(4, "mm"))) +
+  annotate(
+    geom = "text", 
+    x = as.Date("2026-05-20"), 
+    y = 7, 
+    # actual text with line break
+    label = "Less walking \non Sundays", 
+    hjust = "center",
+    # made text smaller
+    size = 3)
 ```
 
-Next steps: 
-
-Add an arrow pointing out an interesting point
 # Figure 2
 
 # Figure 3
