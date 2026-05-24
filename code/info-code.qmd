@@ -74,63 +74,54 @@ ben_time <- ben_clean |>
   # select needed columns
   select(date_clean, distance_walked_km, day_of_week)
 
-# store a variable to adjust the temperature scale
-temp_coe <- 2.5
 ```
 
 ```{r}
 #| label: timeseries
 
 # add base layer using cleaned data for this chart
-# since there's 2 y-axes, only storing x-axis here
+# x-axis: date
+# y-axis: distance walked
+# color: by day of week (for points)
 ggplot(data = ben_time,
        mapping = aes(
-         x = date_clean
+         x = date_clean,
+         y = distance_walked_km,
+         color = day_of_week
        )) +
   # add the distance walked information
   geom_line(
     # use the distance walked column
     mapping = aes(y = distance_walked_km),
     # purple color
-    color = "darkorchid3",
-    linewidth = 0.8
+    color = "grey10",
+    linewidth = 0.3
       ) +
-  # add the temperature information
-  geom_line(
-    # use temperature data with adjusted scale to overlap more nicely with
-    # distance walked
-    mapping = aes(y = high_temperature_c/temp_coe),
-    # yellow color
-    color = "goldenrod3",
-    linewidth = 0.8
-    ) +
-  # rename axes and add secondary axis
-  scale_y_continuous(
-    # rename first axis
-    name = "Distance Walked (km)",
-    # add a second axis with an adjusted scale to make the numbers accurate
-    # after the prior adjustment
-    sec.axis = sec_axis(~.*temp_coe, name = "High Temperature (Celsius)")
+  geom_point() +
+  scale_color_manual(values = c(
+    "Monday" = "red",
+    "Tuesday" = "orange2",
+    "Wednesday" = "yellow",
+    "Thursday" = "green3",
+    "Friday" = "cyan4",
+    "Saturday" = "blue1",
+    "Sunday" = "purple3"
+  )) +
+  theme(panel.background = element_rect(fill = "#D1BCA1"),
+        panel.grid = element_line(color = "#D1BCA1")) +
+  labs(
+    x = "Date",
+    y = "Distance Walked (km)",
+    color = "Day Of Week",
+    title = "Daily Distance Walked"
   ) +
-    scale_color_manual(
-    name = "Legend", 
-    values = c("distance_walked_km" = "blue", "high_temperature_c" = "red")
-  )
+  annotate(
+    geom = "curve", x = as.Date("2026-05-11"), y = 10, xend = as.Date("2026-05-14"), yend = 13)
 ```
 
 Next steps: 
 
-Differentiate the colors for each, add legend
-
-Adjust the x-axis so that display dates are Mondays
-
-Add points, color by day of week
-
-Rename axes
-
-Add title
-
-Get rid of all grid lines except the Monday ones
+Add an arrow pointing out an interesting point
 # Figure 2
 
 # Figure 3
