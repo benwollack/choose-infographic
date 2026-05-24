@@ -16,6 +16,7 @@ execute:
 library(tidyverse)
 library(here)
 library(janitor)
+library(lubridate)
 
 # read in my data and store it as an object called ben-data
 ben_data <- read.csv(here("data", "ben-data-tracker - Sheet1.csv"))
@@ -23,10 +24,24 @@ ben_data <- read.csv(here("data", "ben-data-tracker - Sheet1.csv"))
 
 # Data Cleaning
 
+Goals:
+
+Clean column names
+
+Convert dates into an ordered variable
+
+Convert day of week to ordered variable
+
 ```{r}
 #| label: data-clean
 
-ben_clean <- ben_data
+# create new object called ben_clean from ben_data
+ben_clean <- ben_data |> 
+  # remove capital letters, add underscores
+  clean_names() |> 
+  # convert dates into an ordered variable
+  mutate(date_clean = ymd(date)) |> 
+  # set day of the week to have levels by chronological order
 ```
 
 
