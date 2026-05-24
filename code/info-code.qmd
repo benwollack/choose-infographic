@@ -17,6 +17,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(lubridate)
+library(showtext)
 
 # read in my data and store it as an object called ben-data
 ben_data <- read.csv(here("data", "ben-data-tracker - Sheet1.csv"))
@@ -56,6 +57,11 @@ ben_clean <- ben_data |>
 
 # check data frame's structure to ensure columns are read correctly
 str(ben_clean)
+
+# add custom font
+font_add_google("Darker Grotesque", "grot")
+# use showtext to render fonts
+showtext_auto()
 ```
 
 Day of week and date now have associated number values, so the data can be ordered.
@@ -152,7 +158,11 @@ ggplot(data = ben_time,
     # actual text
     label = "Hiking Day!", 
     # center text around set x location
-    hjust = "center") +
+    hjust = "center",
+    # use larger size
+    size = 8,
+    # use custom font
+    family = "grot") +
   # annotation 2, same format as before, so fewer annotations
   # curve and arrow geometry  
   annotate(
@@ -171,8 +181,8 @@ ggplot(data = ben_time,
     # actual text with line break
     label = "Less walking \non Sundays", 
     hjust = "center",
-    # made text smaller
-    size = 3)
+    size = 5,
+    family = "grot")
 ```
 
 # Figure 2
