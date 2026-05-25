@@ -19,6 +19,8 @@ library(janitor)
 library(lubridate)
 library(showtext)
 library(treemap)
+library(viridis)
+library(ggridges)
 
 # read in my data and store it as an object called ben-data
 ben_data <- read.csv(here("data", "ben-data-tracker - Sheet1.csv"))
@@ -118,6 +120,8 @@ ggplot(data = ben_time,
     "Saturday" = "blue1",
     "Sunday" = "purple3"
   )) +
+  # adjust y-axis to start at 0
+  ylim(0, 14) +
   # adjust color of the background and panel grid to be the same
   # hides grid
   theme(
@@ -233,4 +237,95 @@ treemap(ben_tree,
 ```
 
 # Figure 3
-Note that this is `figure 4` in the planning document.
+
+Variables used: distance_walked, day_of_week, calendar_events
+
+```{r}
+#| label: scatter-clean
+
+# create new object to only include needed columns
+ben_scatter <- ben_clean |> 
+  # select needed columns
+  select(distance_walked_km, day_of_week, calendar_events)
+```
+
+```{r}
+#| label: scatterplot
+
+# create a base layer for a scatterplot
+# data: use ben_scatter
+# x-axis: calendar events
+# y-axis: distance walked
+# color: group by day of week
+ggplot(
+  data = ben_scatter,
+  mapping = aes(
+    x = calendar_events,
+    y = distance_walked_km,
+    color = day_of_week
+  )) +
+  # create scatterplot
+  geom_point() +
+  # adjust colors, same as figure 1  
+  scale_color_manual(values = c(
+    "Monday" = "red",
+    "Tuesday" = "orange2",
+    "Wednesday" = "yellow",
+    "Thursday" = "green3",
+    "Friday" = "cyan4",
+    "Saturday" = "blue1",
+    "Sunday" = "purple3"
+  )) +
+  # adjust background color and remove panel gridlines
+  theme(
+    panel.background = element_rect(fill = "#DEBADB"),
+    panel.grid = element_line(color = "#DEBADB")) +
+  # rename axes and legend, create title
+  labs(
+    x = "Number of Google Calendar Events",
+    y = "Distance Walked (km)",
+    title = "Distance Walked and Calendar Events by Day of Week",
+    color = "Day of Week"
+  ) +
+  # adjust y-axis limits so it starts at 0
+  ylim(0, 14) +
+  # annotate with a vertical line to highlight weekday vs weekend pattern
+  # xintercept sets the location
+  # color sets the color to black
+  # linetype makes it dotted
+  geom_vline(
+    xintercept = 2.5, 
+    color = "black", 
+    linetype = "dotted"
+  ) +
+  # since I annotated these in detail in figure 1, I'll make them sparse here
+  # creating the weekend annotation
+  annotate(
+    geom = "text", 
+    x = 1, 
+    y = 2.5, 
+    label = "Weekends", 
+    hjust = "center",
+    size = 8,
+    family = "grot") +
+  # create annotation for weekday label
+  annotate(
+    geom = "text", 
+    x = 5, 
+    y = 2.5, 
+    label = "Weekdays", 
+    hjust = "center",
+    size = 8,
+    family = "grot") +
+  # create annotation describing the pattern
+  annotate(
+    geom = "text", 
+    x = 5, 
+    y = 0.5, 
+    # line break needed
+    label = "weekday calendar events are \nstrictly higher than weekends", 
+    hjust = "center",
+    size = 4,
+    family = "grot")
+```
+

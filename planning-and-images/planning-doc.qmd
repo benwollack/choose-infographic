@@ -122,3 +122,7 @@ Dropped the temperature data, I couldn't figure out a way to do this without doi
 ## Figure 2
 
 Switched from circular packing to a tree map since I was having issues getting the circular packing package to load, and these both convey the same information
+
+## Figure 3
+
+Since figure 2 is now a tree map, I am switching to figure 3. I also don't think a heat map is going to show this well, so I'm switching to a scatterplot (with subgroups).
