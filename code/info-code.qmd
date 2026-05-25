@@ -212,7 +212,7 @@ treemap(ben_tree,
           # box size controlled by distance walked
           vSize = "distance_walked_km",
           # creates plot title
-          title = "Distance Walked (km) by Lunch Location (black) and Bus Trips (white)",
+          title = "Distance Walked (km) by Lunch Location and Bus Trips",
           fontsize.title = 12,
           # sets the color palette based on layer 1 (lunch location)
           palette = c("#2F2ABF", "#2C6B36", "#C21D1D", "#BFAB1B"),
