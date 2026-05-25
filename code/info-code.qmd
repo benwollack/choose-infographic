@@ -162,7 +162,7 @@ ggplot(data = ben_time,
     # y location of text
     y = 11, 
     # actual text
-    label = "Hiking Day!", 
+    label = "Hiking Day", 
     # center text around set x location
     hjust = "center",
     # use larger size
@@ -173,19 +173,18 @@ ggplot(data = ben_time,
   # curve and arrow geometry  
   annotate(
     geom = "curve", 
-    x = as.Date("2026-05-20"),
-    y = 6,
-    xend = as.Date("2026-05-12"),
+    x = as.Date("2026-05-17"),
+    y = 2.5,
+    xend = as.Date("2026-05-11"),
     yend = 3.33, 
-    # curve in opposite direction of other annotation
-    curvature = -0.5, 
+    curvature = 0.5, 
     arrow = arrow(length = unit(4, "mm"))) +
   annotate(
     geom = "text", 
-    x = as.Date("2026-05-20"), 
-    y = 7, 
+    x = as.Date("2026-05-17"), 
+    y = 1, 
     # actual text with line break
-    label = "Less walking \non Sundays", 
+    label = "Less walking \non Sundays (usually)", 
     hjust = "center",
     size = 5,
     family = "grot")
