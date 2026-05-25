@@ -332,14 +332,25 @@ ggplot(
 
 # Final Write Up
 
-## Sources of Error
+## Visualization
 
-It turns out that satellite tracking on phones is not perfect, as I noticed the app had me in the wrong location sometimes and would then correct and add a few hundredths of a mile here and there. This means there was a systemic error, but it seemed to amount to less than half of a kilometer per day. I was more interested in patterns rather than absolute walking distance, so this error can mostly be ignored, but is worth noting.
+For visualization 1, I tried to parse out patterns, and I couldn't really find any aside from a few points of interest (such as the day I went on a long hike, which drove up the walked distance for that day). Highlighting these points required using annotations, so I added that to the plot.
 
-There were also instances where I either forgot to turn the app off (ex: if I was carpooling somewhere) or forgot to turn it back on. In these instances, I used Google Maps to estimate the distance to correct for it. I also had a friend give me an estimate of distance for one day with their fitness tracker, as the app was consuming too much battery life, and I didn't have access to charging when I was camping for one weekend.
+For visualization 2, there also aren't that many patterns. The main pattern is how often I ate lunch at each location rather than distance walked, and bus trips didn't have any noteworthy patterns either. To highlight lunch location, I attached color to this variable to make it stand out. I also made the borders thick and used a different font that naturally looks bold while pushing other information off to the side by using less striking fonts and borders.
 
-## Figure Creation Challenges
+For visualization 3, there was a clear pattern between calendar events for weekdays and weekends (not so much for distance walked though), so I highlighted this using a vertical line annotation and accompanying text. 
 
-One of the biggest challenges that arose came from working with date formatting in figure 1. By default, Rstudio treated these as categorical variables without order when I needed order for the time series. This required wrangling, and it also messed with the annotations. Part of the annotation requires specifying the x-axis location, and when the x-axis is in date format, the annotation location must also awkwardly be created.
+For more general visualization aspects, I stuck with bold colors for the data to make it easy to read while using pale colors for the backgrounds. I also chose fonts that were easy to read but not too overwhelming (with the exception of visualization 2, which needed a bolder font to match with a dark background and a noisy dataset.
 
-[Wait, this is part 4, I don't need this yet, I will finish it later]
+## Sources 
+
+Cleaning the data involved making the categorical variables `date` and `day of week` ordered variables. For days of the week, this was simple, and I used as_factor() as done in workshop. For dates, it was a bit trickier, and I had to bring in a new, similar function that could read a date as year-month-day data. During cleaning, I also had to load in external fonts.
+
+For visualization 1, inspiration mostly came from class. Initial inspiration came from the Himalayan Expeditions dataset (Gregorios Karamani) since I wanted to also plot temperature. I ended up forgoing this as it required a secondary axis (different variable with different units) that would've made the graph trickier to read. The hardest part for visualization 1 was working with an axis in date format. This affected annotation placement (since I had to specify x-axis location in terms of the date variable).
+
+For visualization 2, inspiration came from Data to Viz. I initially wanted Circular Packing (Yan Holtz), but I was having trouble getting the packages to run, and I ended up deciding the Treemap (also Yan Holtz) would've worked better given the more efficient use of space. I ended up using treemap() rather than treemapify() even though it didn't use ggplot since I liked the aesthetics on the treemap() chart more. Surprisingly, it also required less wrangling.
+
+For visualization 3, inspiration also came from class and Data to Viz (Yan Holtz). Specifically, I wanted the group scatterplot, where points were labeled with different colors to represent a third variable. This visualization was definitely the most straightforward, although I had to find a new annotation that would as a line rather than a curve to highlight the weekend vs weekday pattern.
+
+I used template code from Data to Viz. Stack Overflow and Google AI helped a lot with debugging. Prompts were mostly asking Google how to do a certain action (for example, how to get RStudio to read dates as a date variable rather than a categorical variable). 
+
