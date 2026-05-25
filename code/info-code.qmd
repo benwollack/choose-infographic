@@ -30,14 +30,6 @@ ben_data <- read.csv(here("data", "ben-data-tracker - Sheet1.csv"))
 
 # Data Cleaning
 
-Goals:
-
-Clean column names
-
-Convert dates into an ordered variable
-
-Convert day of week to ordered variable
-
 ```{r}
 #| label: data-clean
 
@@ -78,6 +70,8 @@ Each figure will use different columns, so I will begin each plot with a select 
 
 Variables being used: distance walked, date, day of week
 
+The aim of this time series is to provide a general summary of how much I walked each day over the course of data collection. Furthermore, I highlighted each day of the week to see if any patterns emerged (for example, if there was difference between on walking on weekdays vs weekends).
+
 ```{r}
 #| label: time-clean
 
@@ -117,8 +111,8 @@ ggplot(data = ben_time,
     "Monday" = "red",
     "Tuesday" = "orange2",
     "Wednesday" = "yellow",
-    "Thursday" = "green3",
-    "Friday" = "cyan4",
+    "Thursday" = "green4",
+    "Friday" = "cyan3",
     "Saturday" = "blue1",
     "Sunday" = "purple3"
   )) +
@@ -196,6 +190,8 @@ ggplot(data = ben_time,
 
 Variables being used: distance walked, bus trips, lunch location
 
+Although distance walked dictates the size of each box, the time series shows that each day does not differ too much in terms of distance walked, and this chart also shows that the sizes are more or less homogeneous when averaged out, visually showing that lunch location and bus trips did not alter distance walked that much. What is interesting is how often I ate lunch on campus. I am busy after all, and that meal plan sure comes in handy.
+
 ```{r}
 #| label: tree-clean
 
@@ -242,6 +238,8 @@ treemap(ben_tree,
 
 Variables used: distance_walked, day_of_week, calendar_events
 
+The scatterplot finally has a clear pattern emerging. There is a small pattern of me walking less on Sundays, which the time series already illustrated, but even more striking is how many fewer calendar events I had on weekends. This makes sense in context, but I am surprised by how clear it is on the chart. Aside from Memorial Day (which is essentially a weekend), weekends have strictly fewer calendar events than weekdays (absolutely no exceptions here). This pattern is notable enough that I drew attention to it.
+
 ```{r}
 #| label: scatter-clean
 
@@ -273,8 +271,8 @@ ggplot(
     "Monday" = "red",
     "Tuesday" = "orange2",
     "Wednesday" = "yellow",
-    "Thursday" = "green3",
-    "Friday" = "cyan4",
+    "Thursday" = "green4",
+    "Friday" = "cyan3",
     "Saturday" = "blue1",
     "Sunday" = "purple3"
   )) +
@@ -330,3 +328,17 @@ ggplot(
     size = 4,
     family = "grot")
 ```
+
+# Final Write Up
+
+## Sources of Error
+
+It turns out that satellite tracking on phones is not perfect, as I noticed the app had me in the wrong location sometimes and would then correct and add a few hundredths of a mile here and there. This means there was a systemic error, but it seemed to amount to less than half of a kilometer per day. I was more interested in patterns rather than absolute walking distance, so this error can mostly be ignored, but is worth noting.
+
+There were also instances where I either forgot to turn the app off (ex: if I was carpooling somewhere) or forgot to turn it back on. In these instances, I used Google Maps to estimate the distance to correct for it. I also had a friend give me an estimate of distance for one day with their fitness tracker, as the app was consuming too much battery life, and I didn't have access to charging when I was camping for one weekend.
+
+## Figure Creation Challenges
+
+One of the biggest challenges that arose came from working with date formatting in figure 1. By default, Rstudio treated these as categorical variables without order when I needed order for the time series. This required wrangling, and it also messed with the annotations. Part of the annotation requires specifying the x-axis location, and when the x-axis is in date format, the annotation location must also awkwardly be created.
+
+[Wait, this is part 4, I don't need this yet, I will finish it later]
