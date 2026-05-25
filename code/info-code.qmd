@@ -223,7 +223,7 @@ treemap(ben_tree,
           border.lwds=c(4,2.5,1),
           # adjusts font size on labels, 3rd layer has no labels since size already 
           # accounts for the value
-          fontsize.labels=c(20, 15, 0),
+          fontsize.labels=c(15, 12, 0),
           # sets layer 1 text to black and layer 2 to white
           fontcolor.labels=c("black", "white"),
           # removes highlighting on labels
