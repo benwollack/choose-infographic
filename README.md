@@ -1,15 +1,13 @@
 # Ben Wollack's Infographic
-An infographic seeing how certain variables affect my distance walked per day
 
 ## General Information
-This repo is for an infographic visualizing how certain variables influence how much I walk per day.
+This contains information for an infographic visualizing how certain variables influence how much I walk per day.
 
 ## Data and File Information
-The `planning` folder contains information about how I organized my data and chose what visualizations to make.
+The `planning-and-images` folder contains all images (drafts and final). It also includes information about how I organized my data, chose what visualizations to make.
 
 The `data` folder contains my raw data.
 
-The `code` folder contains my code for creating the infographics.
+The `code` folder contains my code for creating the infographics and the rendered output.
 
-## Rendered Output
-This will be added when available.
+## Outputs
