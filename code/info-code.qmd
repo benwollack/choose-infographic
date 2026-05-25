@@ -216,9 +216,8 @@ treemap(ben_tree,
           # box size controlled by distance walked
           vSize = "distance_walked_km",
           # creates plot title
-          title = "Distanced Walked (km) by Lunch Location 
-(black text) and Bus Trips (white text)",
-          fontsize.title = 20,
+          title = "Distance Walked (km) by Lunch Location (black) and Bus Trips (white)",
+          fontsize.title = 12,
           # sets the color palette based on layer 1 (lunch location)
           palette = c("#2F2ABF", "#2C6B36", "#C21D1D", "#BFAB1B"),
           # sets border colors for the 3 layers
@@ -331,4 +330,3 @@ ggplot(
     size = 4,
     family = "grot")
 ```
-
