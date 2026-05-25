@@ -279,12 +279,13 @@ ggplot(
   # adjust background color and remove panel gridlines
   theme(
     panel.background = element_rect(fill = "#DEBADB"),
-    panel.grid = element_line(color = "#DEBADB")) +
+    panel.grid = element_line(color = "#DEBADB"),
+    plot.title = element_text(size = 15)) +
   # rename axes and legend, create title
   labs(
     x = "Number of Google Calendar Events",
     y = "Distance Walked (km)",
-    title = "Distance Walked and Calendar Events by Day of Week",
+    title = "Distance Walked & Calendar Events by Day of Week",
     color = "Day of Week"
   ) +
   # adjust y-axis limits so it starts at 0
