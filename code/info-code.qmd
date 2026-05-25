@@ -1,8 +1,10 @@
 ---
 title: "Code"
 author: "Ben Wollack"
-date: "2026/05/21"
-format: pdf
+date: "2026/05/28"
+format:
+  pdf:
+    toc: true
 editor: source
 execute:
   message: false
@@ -190,7 +192,7 @@ ggplot(data = ben_time,
     family = "grot")
 ```
 
-# Figure 2
+# Figure 2 - Treemap
 
 Variables being used: distance walked, bus trips, lunch location
 
@@ -214,7 +216,8 @@ treemap(ben_tree,
           # box size controlled by distance walked
           vSize = "distance_walked_km",
           # creates plot title
-          title = "Distanced Walked (km) by \nLunch Location (black text) and Bus Trips (white text)",
+          title = "Distanced Walked (km) by Lunch Location 
+(black text) and Bus Trips (white text)",
           fontsize.title = 20,
           # sets the color palette based on layer 1 (lunch location)
           palette = c("#2F2ABF", "#2C6B36", "#C21D1D", "#BFAB1B"),
@@ -223,7 +226,8 @@ treemap(ben_tree,
           border.col=c("black", "black", "grey50"),
           # adjust border widths, higher layers are thicker
           border.lwds=c(4,2.5,1),
-          # adjusts font size on labels, 3rd layer has no labels since size already accounts for the value
+          # adjusts font size on labels, 3rd layer has no labels since size already 
+          # accounts for the value
           fontsize.labels=c(20, 15, 0),
           # sets layer 1 text to black and layer 2 to white
           fontcolor.labels=c("black", "white"),
@@ -231,11 +235,11 @@ treemap(ben_tree,
           bg.labels=c("transparent"),
           # layer 1's labels are centered, layer 2 in top left of box
           align.labels=list( c("center", "center"), c("left", "top")),
-          fontfamily.labels = "lex"
+          fontfamily.labels = "lex",
 )
 ```
 
-# Figure 3
+# Figure 3 - Scatterplot
 
 Variables used: distance_walked, day_of_week, calendar_events
 
