@@ -118,11 +118,20 @@ ggplot(data = ben_time,
   )) +
   # adjust y-axis to start at 0
   ylim(0, 14) +
-  # adjust color of the background and panel grid to be the same
-  # hides grid
+  # adjust colors of all elements to match the plot's theme (green)
+  # remove grid lines
+  # adjust background colors
   theme(
-    panel.background = element_rect(fill = "#D1BCA1"),
-    panel.grid = element_line(color = "#D1BCA1")) +
+    # lightest color: panel elements so it stands out
+    panel.background = element_rect(fill = "#aded98"),
+    panel.grid = element_line(color = "#aded98"),
+    # intermediate color: background of everything else
+    plot.background = element_rect(fill = "#6fc253"),
+    legend.background = element_rect(fill = "#6fc253"),
+    # darkest color: text elements
+    axis.title = element_text(color = "#0e2b04"),
+    legend.title = element_text(color = "#0e2b04"),
+    legend.text = element_text(color = "#0e2b04")) +
   # creating title
   # renaming axes
   # renaming legend (mapped to color)
@@ -130,7 +139,6 @@ ggplot(data = ben_time,
     x = "Date",
     y = "Distance Walked (km)",
     color = "Day Of Week",
-    title = "Daily Distance Walked"
   ) +
   # add an annotation
   annotate(
@@ -145,6 +153,8 @@ ggplot(data = ben_time,
     xend = as.Date("2026-05-15"),
     # sets the end y location of the curve
     yend = 13.13, 
+    # adjust color of curve
+    color = "#0e2b04",
     # sets direction of curve
     curvature = -0.5, 
     # adjusts arrow length
@@ -157,6 +167,8 @@ ggplot(data = ben_time,
     x = as.Date("2026-05-08"), 
     # y location of text
     y = 11, 
+    # change color to match plot's theme
+    color = "#0e2b04",
     # actual text
     label = "Hiking Day", 
     # center text around set x location
@@ -173,16 +185,18 @@ ggplot(data = ben_time,
     y = 2.5,
     xend = as.Date("2026-05-11"),
     yend = 3.33, 
+    color = "#0e2b04",
     curvature = 0.5, 
     arrow = arrow(length = unit(4, "mm"))) +
   annotate(
     geom = "text", 
     x = as.Date("2026-05-17"), 
     y = 1, 
-    # actual text with line break
+    color = "#0e2b04",
+    # actual text, with line break
     label = "Less walking \non Sundays (usually)", 
     hjust = "center",
-    size = 5,
+    size = 6,
     family = "grot")
 ```
 
@@ -202,6 +216,21 @@ ben_tree <- ben_clean |>
 ```
 
 ```{r}
+#| label: tree-mapify
+
+ggplot(
+  data = ben_tree,
+  aes(
+    area = distance_walked_km,
+    fill = lunch_location,
+    group = lunch_location,
+    subgroup = bus_trips
+)) +
+  geom_treemap()
+```
+
+
+```{r}
 #| label: tree-map
 
 # create a treemap diagram
@@ -211,28 +240,28 @@ treemap(ben_tree,
           index = c("lunch_location", "bus_trips", "distance_walked_km"),
           # box size controlled by distance walked
           vSize = "distance_walked_km",
-          # creates plot title
-          title = "Distance Walked (km) by Lunch Location and Bus Trips",
-          fontsize.title = 12,
+          # remove plot title (redundant, will be on infographic)
+          title = "",
           # sets the color palette based on layer 1 (lunch location)
           palette = c("#2F2ABF", "#2C6B36", "#C21D1D", "#BFAB1B"),
           # sets border colors for the 3 layers
           # black for first 2, grey for 3rd
-          border.col=c("black", "black", "grey50"),
+          border.col = c("black", "black", "grey50"),
           # adjust border widths, higher layers are thicker
-          border.lwds=c(4,2.5,1),
+          border.lwds = c(4,2.5,1),
           # adjusts font size on labels, 3rd layer has no labels since size already 
           # accounts for the value
-          fontsize.labels=c(15, 12, 0),
+          fontsize.labels = c(15, 12, 0),
           # sets layer 1 text to black and layer 2 to white
-          fontcolor.labels=c("black", "white"),
+          fontcolor.labels = c("black", "white"),
           # removes highlighting on labels
-          bg.labels=c("transparent"),
+          bg.labels = c("transparent"),
           # layer 1's labels are centered, layer 2 in top left of box
-          align.labels=list( c("center", "center"), c("left", "top")),
-          fontfamily.labels = "lex",
-)
+          align.labels = list( c("center", "center"), c("left", "top")),
+          fontfamily.labels = "lex")
 ```
+
+Distance Walked (km) by Lunch Location and Bus Trips
 
 # Figure 3 - Scatterplot
 
@@ -276,16 +305,19 @@ ggplot(
     "Saturday" = "blue1",
     "Sunday" = "purple3"
   )) +
-  # adjust background color and remove panel gridlines
+  # adjust background colors and remove panel gridlines
   theme(
-    panel.background = element_rect(fill = "#DEBADB"),
-    panel.grid = element_line(color = "#DEBADB"),
-    plot.title = element_text(size = 15)) +
+    plot.background = element_rect(fill = "#d98b82"),
+    panel.background = element_rect(fill = "#e0b2ad"),
+    panel.grid = element_line(color = "#e0b2ad"),
+    legend.background = element_rect(fill = "#d98b82"),
+    axis.title = element_text(color = "#290602"),
+    legend.title = element_text(color = "#290602"),
+    legend.text = element_text(color = "#290602")) +
   # rename axes and legend, create title
   labs(
     x = "Number of Google Calendar Events",
     y = "Distance Walked (km)",
-    title = "Distance Walked & Calendar Events by Day of Week",
     color = "Day of Week"
   ) +
   # adjust y-axis limits so it starts at 0
@@ -296,7 +328,7 @@ ggplot(
   # linetype makes it dotted
   geom_vline(
     xintercept = 2.5, 
-    color = "black", 
+    color = "#290602", 
     linetype = "dotted"
   ) +
   # since I annotated these in detail in figure 1, I'll make them sparse here
@@ -308,6 +340,7 @@ ggplot(
     label = "Weekends", 
     hjust = "center",
     size = 8,
+    color = "#290602",
     family = "grot") +
   # create annotation for weekday label
   annotate(
@@ -317,6 +350,7 @@ ggplot(
     label = "Weekdays", 
     hjust = "center",
     size = 8,
+    color = "#290602",
     family = "grot") +
   # create annotation describing the pattern
   annotate(
@@ -327,6 +361,7 @@ ggplot(
     label = "weekday calendar events are \nstrictly higher than weekends", 
     hjust = "center",
     size = 4,
+    color = "#290602",
     family = "grot")
 ```
 
