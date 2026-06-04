@@ -216,21 +216,6 @@ ben_tree <- ben_clean |>
 ```
 
 ```{r}
-#| label: tree-mapify
-
-ggplot(
-  data = ben_tree,
-  aes(
-    area = distance_walked_km,
-    fill = lunch_location,
-    group = lunch_location,
-    subgroup = bus_trips
-)) +
-  geom_treemap()
-```
-
-
-```{r}
 #| label: tree-map
 
 # create a treemap diagram
