@@ -13,6 +13,6 @@ The `code` folder contains my code for creating the infographics and the rendere
 ## Outputs
 The infographic can be found [here](https://www.canva.com/design/DAHKsZHbkos/T1xeEz-04s_-Bo-P6dRm2A/edit?ui=e30)
 
-The rendered PDF for the code can be found [here](https://github.com/benwollack/choose-infographic/blob/main/code/info-code.pdf)
+The rendered PDF for the code can be found [here](https://github.com/benwollack/choose-infographic/blob/main/code/info-code.pdf). The write up is at the end of this document.
 
 The rendered PDF for the planning can be found [here](https://github.com/benwollack/choose-infographic/blob/main/planning-and-images/planning-doc.pdf)
