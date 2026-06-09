@@ -11,7 +11,7 @@ The `data` folder contains my raw data.
 The `code` folder contains my code for creating the infographics and the rendered output.
 
 ## Outputs
-The infographic can be found [here](https://www.canva.com/design/DAHKsZHbkos/T1xeEz-04s_-Bo-P6dRm2A/edit?ui=e30)
+The PDF for the infographic can be found [here](https://github.com/benwollack/choose-infographic/blob/main/Ben%20Infographic.pdf)
 
 The rendered PDF for the code can be found [here](https://github.com/benwollack/choose-infographic/blob/main/code/info-code.pdf). The write up is at the end of this document.
 
